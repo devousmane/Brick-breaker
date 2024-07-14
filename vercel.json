@@ -1,0 +1,33 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "handler/handler.go",
+        "use": "@vercel/go"
+      },
+      {
+        "src": "index.html",
+        "use": "@vercel/static"
+      },
+      {
+        "src": "assets/**/*",
+        "use": "@vercel/static"
+      },
+      {
+        "src": "Script/**/*.js",
+        "use": "@vercel/static"
+      },
+      {
+        "src": "sounds/**/*",
+        "use": "@vercel/static"
+      },
+      {
+        "src": "Web/index.css",
+        "use": "@vercel/static"
+      }
+    ],
+    "routes": [
+      { "src": "/api/.*", "dest": "handler/handler.go" },
+      { "src": "/.*", "dest": "/index.html" }
+    ]
+  }
