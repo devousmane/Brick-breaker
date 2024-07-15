@@ -1,0 +1,57 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "handler/**/*.go",
+        "use": "@vercel/go"
+      },
+      {
+        "src": "index.html",
+        "use": "@vercel/static"
+      },
+      {
+        "src": "Script/**/*.js",
+        "use": "@vercel/node"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/assets/(.*)",
+        "dest": "/assets/$1"
+      },
+      {
+        "src": "/sounds/(.*)",
+        "dest": "/sounds/$1"
+      },
+      {
+        "src": "/Web/(.*)",
+        "dest": "/Web/$1"
+      },
+      {
+        "src": "/api/(.*)",
+        "dest": "/handler/$1"
+      },
+      {
+        "src": "/",
+        "dest": "/index.html"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "/$1"
+      }
+    ],
+    "public": false,
+    "cleanUrls": true,
+    "headers": [
+      {
+        "source": "/(.*)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=0, must-revalidate"
+          }
+        ]
+      }
+    ]
+  }
+  
